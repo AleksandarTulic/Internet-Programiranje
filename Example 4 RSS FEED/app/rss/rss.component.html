@@ -1,0 +1,20 @@
+<div id="mySidenav" class="sidenav" style="background-color: #4ee5ff;">
+    <div class="container w-100">
+        <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+        <div class="row">
+        <div class="col-sm-12 col-md-12" *ngFor="let f of feed">
+            <div class="clearfix" >
+            <div class="float-left">
+                <img src="{{f.linkImg}}" class="img-responsive" alt="image" width="160px" height="100px">
+            </div>
+            <div class="float-left">
+                <a href="{{f.linkRest}}" style="font-size: 14px;color: black; margin: 0px;padding: 0px;"><strong>{{f.title}}</strong></a>
+                <p>{{f.content}}</p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+  
+<button data-toggle="tooltip" data-placement="top" title="News Feed" type="button" class="btn btn-info" style="cursor: pointer;" (click)="openNav()">&#9776;</button>

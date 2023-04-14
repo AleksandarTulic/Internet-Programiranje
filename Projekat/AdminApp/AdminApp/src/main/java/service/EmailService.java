@@ -20,8 +20,8 @@ import logger.MyLogger;
 import models.dto.Consumer;
 
 public class EmailService{
-	private static final String EMAIL_FROM = "testingprogram99@gmail.com";
-	private static final String EMAIL_FROM_PASSWORD = "nxhfpcmafwhtuads";
+	private static final String EMAIL_FROM = "";
+	private static final String EMAIL_FROM_PASSWORD = "";
 	private static final String HOST = "smtp.gmail.com";
 	private static final String Port = "587";
 	

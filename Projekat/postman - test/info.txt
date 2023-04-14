@@ -1,0 +1,3 @@
+Potrebno je da napomenem da testove koje sam pisao, da sam to radio TOKOM IZRADE, tako da oni nece prikazati vama isti odgovor.
+Npr. kod mene je postojao product ciji je id 10 dok kod vas nece jer nije definisan ni jedan product. Samim tim vi cete dobiti praznu listu
+dok sam ja dobio kao odgovor odgovarajuci objekat.

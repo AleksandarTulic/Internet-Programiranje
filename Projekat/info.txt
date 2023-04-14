@@ -1,0 +1,7 @@
+ime:     Aleksandar
+prezime: Tulić
+indeks:  1179/18
+
+Dodatne informacije:
+	- za slanje mail poruke kod spring aplikacije koristio sam maildev
+	- za spring aplikaciju prije pokretanja pogledajte application.properties

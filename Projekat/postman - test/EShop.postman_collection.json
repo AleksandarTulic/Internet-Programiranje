@@ -1,0 +1,1100 @@
+{
+	"info": {
+		"_postman_id": "0d6528e8-32a1-43f7-8b86-8c6cfb585952",
+		"name": "EShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19002486"
+	},
+	"item": [
+		{
+			"name": "retrieve consumer by username",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/consumer/jelena",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"consumer",
+						"jelena"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve consumer by username that does not exist",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/consumer/jelena123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"consumer",
+						"jelena123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buying your own product",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jovana22",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\":\"10\",\r\n    \"consumerId\": \"3\",\r\n    \"paymentType\": \"CASH\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product_bought/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product_bought",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buy product",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jelena",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": 10,\r\n    \"consumerId\": 4,\r\n    \"paymentType\": \"CASH\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product_bought/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product_bought",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create comment for product",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jelena",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": 1,\r\n    \"consumerId\": 3,\r\n    \"value\": \"Dobar proizvod.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/comment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"comment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create comment for product with no login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": 1,\r\n    \"consumerId\": 3,\r\n    \"value\": \"Dobar proizvod.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/comment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"comment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create comment for product with not valid product id",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jelena",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": 50,\r\n    \"consumerId\": 3,\r\n    \"value\": \"Dobar proizvod.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/comment/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"comment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product info by product_id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/product/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product info by product_id that does not exist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/product/50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"50"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check if product exists with product_id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/product/exists/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"exists",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get number of products that fulfil some requests",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productTitle\": \"\",\r\n    \"categoryTitle\": \"\",\r\n    \"description\": \"\",\r\n    \"productType\": \"\",\r\n    \"lowerCost\": null,\r\n    \"upperCost\": null,\r\n    \"city\": \"\",\r\n    \"left\": 0,\r\n    \"right\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product/retrieveNumberOf",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"retrieveNumberOf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get products that fulfil some requests variation 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productTitle\": \"\",\r\n    \"categoryTitle\": \"\",\r\n    \"description\": \"\",\r\n    \"productType\": \"\",\r\n    \"lowerCost\": null,\r\n    \"upperCost\": null,\r\n    \"city\": \"\",\r\n    \"left\": 0,\r\n    \"right\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get products that fulfil some requests variation 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productTitle\": \"\",\r\n    \"categoryTitle\": \"Television\",\r\n    \"description\": \"\",\r\n    \"productType\": \"\",\r\n    \"lowerCost\": null,\r\n    \"upperCost\": null,\r\n    \"city\": \"\",\r\n    \"left\": 0,\r\n    \"right\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete product By Id",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jelena",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product/delete/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"delete",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete product but you are not the owner(loged in user)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jelena",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/product/delete/27",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"delete",
+						"27"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create product",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jelena",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Tomboy",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Avion star 50 godina. U dobro stanju.",
+							"type": "text"
+						},
+						{
+							"key": "cost",
+							"value": "102000.991",
+							"type": "text"
+						},
+						{
+							"key": "productType",
+							"value": "USED",
+							"type": "text"
+						},
+						{
+							"key": "categoryTitle",
+							"value": "Avion",
+							"type": "text"
+						},
+						{
+							"key": "consumerId",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "fieldValues[0].categoryFieldName",
+							"value": "Type",
+							"type": "text"
+						},
+						{
+							"key": "fieldValues[0].fieldValue",
+							"value": "OLD",
+							"type": "text"
+						},
+						{
+							"key": "pictures",
+							"type": "file",
+							"src": [
+								"/C:/Users/Aleksandar/Desktop/sema1.png",
+								"/C:/Users/Aleksandar/Desktop/sema2.png",
+								"/C:/Users/Aleksandar/Desktop/sema3.png"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9000/product/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create product title missing - validation exception",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jelena",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Avion star 50 godina. U dobro stanju.",
+							"type": "text"
+						},
+						{
+							"key": "cost",
+							"value": "92000.99",
+							"type": "text"
+						},
+						{
+							"key": "productType",
+							"value": "USED",
+							"type": "text"
+						},
+						{
+							"key": "categoryTitle",
+							"value": "Avion",
+							"type": "text"
+						},
+						{
+							"key": "consumerId",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "fieldValues[0].categoryFieldName",
+							"value": "Type",
+							"type": "text"
+						},
+						{
+							"key": "fieldValues[0].fieldValue",
+							"value": "OLD",
+							"type": "text"
+						},
+						{
+							"key": "pictures",
+							"type": "file",
+							"src": [
+								"/C:/Users/Aleksandar/Desktop/sema1.png",
+								"/C:/Users/Aleksandar/Desktop/sema2.png",
+								"/C:/Users/Aleksandar/Desktop/sema3.png"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9000/product/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update product",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jelena",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "30",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Tomboy 22",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Avion star 50 godina. U dobro stanju.",
+							"type": "text"
+						},
+						{
+							"key": "cost",
+							"value": "92110.991",
+							"type": "text"
+						},
+						{
+							"key": "productType",
+							"value": "USED",
+							"type": "text"
+						},
+						{
+							"key": "categoryTitle",
+							"value": "Avion",
+							"type": "text"
+						},
+						{
+							"key": "consumerId",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "fieldValues[0].categoryFieldName",
+							"value": "Type",
+							"type": "text"
+						},
+						{
+							"key": "fieldValues[0].fieldValue",
+							"value": "OLD",
+							"type": "text"
+						},
+						{
+							"key": "pictures",
+							"type": "file",
+							"src": [
+								"/C:/Users/Aleksandar/Desktop/sema1.png",
+								"/C:/Users/Aleksandar/Desktop/sema2.png",
+								"/C:/Users/Aleksandar/Desktop/sema3.png"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9000/product/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve product field values",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/product_field_values/30/Avion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product_field_values",
+						"30",
+						"Avion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve product pictures",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/product_pictures/30",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product_pictures",
+						"30"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jelena\",\r\n    \"password\": \"jelena\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "failed login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jelena\",\r\n    \"password\": \"jelena123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add support message",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jelena",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Padajuci meni selektovanje opcija\",\r\n    \"message\": \"Ne mogu se selektovati zadnje dvije opcije\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/support_message/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"support_message",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add support message - fail validation",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jelena",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "jelena",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Padajuci meni - selektovanje opcija\",\r\n    \"message\": \"Ne mogu se selektovati zadnje dvije opcije\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/support_message/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"support_message",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register account",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "firstName",
+							"value": "aaaaaaIme",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "aaaaaaPrezime",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "aaaaaa",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "aaaaaa",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "aaaa@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "066200400",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Banja Luka",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": "/C:/Users/Aleksandar/Desktop/sema2.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9000/registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "confirm account with token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "aaaaaa",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "aaaaaa",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\": 7087,\r\n    \"username\": \"aaaaaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/registration/confirm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"registration",
+						"confirm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get products bought buy a user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/product/retrieveProductsUserBought/4/0/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"product",
+						"retrieveProductsUserBought",
+						"4",
+						"0",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,39 @@
+<div class="col-sm-12">
+    <table class="table table-striped" id="myTable1_{{_whichOperation}}">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Cost</th>
+                <th>View More</th>
+            </tr>
+        </thead>
+        
+        <tbody id="productsContent_{{_whichOperation}}">
+                <tr *ngFor="let item of arr;let j=index">
+                    <td><img *ngIf="item.image + '' !== 'null'" src="data:image/jpeg;base64,{{item.image}}" style="width:150px;height:90px;"></td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.category}}</td>
+                    <td>{{item.cost}}</td>
+                    <td><button class="btn btn-info" (click)="viewMore(item.id)">More?</button></td>
+                </tr>
+        </tbody>
+    </table>
+
+    <div class="col-sm-12" style="text-align: center;" id="myPagination_{{_whichOperation}}">
+        <nav aria-label="...">
+        <ul class="pagination">
+        <li class="page-item disabled" id="previous_{{_whichOperation}}">
+            <a class="page-link normalButton" href="#" style="color: black;min-width: 0 !important;padding-top: 7px;padding-bottom: 7px;margin-top: -1px;" (click)="getNext($event.target, -1)">Previous</a>
+        </li>
+        
+        <li class="page-item active"><a class="page-link" style="background-color: #222;border: 1px solid #222;" href="#" id="leftIndex_{{_whichOperation}}">1</a></li>
+        
+        <li class="page-item" id="next_{{_whichOperation}}">
+            <a class="page-link normalButton" href="#" style="color: black;min-width: 0 !important;padding-top: 7px;padding-bottom: 7px;margin-top: -1px;" (click)="getNext($event.target, 1)">Next</a>
+        </li>
+        </ul>
+    </nav>
+    </div>
+</div>

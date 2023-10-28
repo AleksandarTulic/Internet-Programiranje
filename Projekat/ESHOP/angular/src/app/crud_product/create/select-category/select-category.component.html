@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label class="control-label">Category</label>
+            <div>
+                <select class="form-control" (change)="retrieveFieldsSelect($event.target)" id="selectCategory">
+                    <option [attr.selected]="updateProduct + '' === 'undefined' ? null : updateProduct!.categoryTitle === element.title ? 'selected' : null" *ngFor="let element of arrCategory" value="{{element.title}}">{{element.title}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12" *ngFor="let item of arrCategoryFields">
+        <div class="form-group" *ngIf="(flagUpdate + '' === 'false' && updateProduct + '' === 'undefined')">
+            <label class="control-label">{{item.name}}</label>
+            <div *ngIf="item.fieldType === TYPE_FIELD.ONE">
+                <!--NUMBER-->
+                <input id="{{item.name}}" (change)="valueChanged()" type="number" min="{{item.regex.split('|')[0]}}" max="{{item.regex.split('|')[1]}}" required name="{{item.name}}" class="form-control {{TYPE_FIELD.ONE}}" value="{{item.regex.split('|')[0]}}">
+            </div>
+
+            <div *ngIf="item.fieldType === TYPE_FIELD.TWO">
+                <!--TEXT-->
+                <input id="{{item.name}}" (keyup)="valueChanged()" type="text" required name="{{item.name}}" pattern="{{item.regex}}" class="form-control {{TYPE_FIELD.TWO}}">
+            </div>
+
+            <div *ngIf="item.fieldType === TYPE_FIELD.THREE">
+                <!--FIXED-->
+                <select id="{{item.name}}" (change)="valueChanged()" name="{{item.name}}" class="form-control {{TYPE_FIELD.THREE}}">
+                    <option *ngFor="let i of item.regex.split('|');let j=index" value="{{i.split('^')[1].split('$')[0]}}">{{i.split('^')[1].split('$')[0]}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12" *ngFor="let item of arrProductFieldValues">
+        <div class="form-group" *ngIf="(flagUpdate + '' === 'true')">
+            <label class="control-label">{{item.categoryFieldName}}</label>
+            <div *ngIf="item.categoryFieldEntity.fieldType === TYPE_FIELD.ONE">
+                <!--NUMBER-->
+                <input id="{{item.categoryFieldEntity.name}}" (change)="valueChanged()" type="number" min="{{item.categoryFieldEntity.regex.split('|')[0]}}" max="{{item.categoryFieldEntity.regex.split('|')[1]}}" required name="{{item.categoryFieldEntity.name}}" class="form-control {{TYPE_FIELD.ONE}}" value="{{item.fieldValue}}">
+            </div>
+
+            <div *ngIf="item.categoryFieldEntity.fieldType === TYPE_FIELD.TWO">
+                <!--TEXT-->
+                <input id="{{item.categoryFieldEntity.name}}" (keyup)="valueChanged()" type="text" required name="{{item.categoryFieldEntity.name}}" pattern="{{item.categoryFieldEntity.regex}}" class="form-control {{TYPE_FIELD.TWO}}" value="{{item.fieldValue}}">
+            </div>
+
+            <div *ngIf="item.categoryFieldEntity.fieldType === TYPE_FIELD.THREE">
+                <!--FIXED-->
+                <select id="{{item.categoryFieldEntity.name}}" (change)="valueChanged()" name="{{item.categoryFieldEntity.name}}" class="form-control {{TYPE_FIELD.THREE}}">
+                    <option *ngFor="let i of item.categoryFieldEntity.regex.split('|');let j=index" [attr.selected]="(i.split('^')[1].split('$')[0] + '' === item.fieldValue + '') ? 'selected' : null" value="{{i.split('^')[1].split('$')[0]}}">{{i.split('^')[1].split('$')[0]}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

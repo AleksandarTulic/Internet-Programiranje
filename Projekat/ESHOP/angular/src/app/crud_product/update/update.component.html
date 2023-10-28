@@ -1,0 +1,73 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" style="padding-left: 0px;">
+            <h2 class="modal-title">Update Product</h2>
+        </div>
+        
+        <div class="col-sm-1">
+            &nbsp;
+        </div>
+        
+        <div class="col-sm-7" id="message">
+        </div>
+    </div>
+    <form action="" method="post" style="margin-top: 20px;" enctype="multipart/form-data" >
+        <div class="row">
+            <div class="col-sm-6" style="margin-top: 2px;">
+                <div class="form-group">
+                    <label class="control-label">Product Title</label>
+                    <div>
+                        <input type="text" id="createProductTitle" required class="form-control" pattern="{{productTitleRegex}}">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 19px;">
+                    <label class="control-label">Product Type</label>
+                    <div>
+                        <select class="form-control" id="createProductProductType">
+                            <option value="NEW">NEW</option>
+                            <option value="USED">USED</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 19px;">
+                    <label class="control-label">Price</label>
+                    <div>
+                        <input type="number" id="createProductPrice" required class="form-control" min="{{productPriceMinValue}}" value="{{productPriceMinValue}}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="control-label">Product Description</label>
+                <div>
+                    <textarea style="resize: none;" class="form-control" rows="9" id="description"></textarea>
+                </div>
+            </div>
+            
+        </div>
+
+        <app-select-category [updateProduct]="updateProduct" (EmitCategoryFieldsInput)="getSelectComponentValues($event)" (EmitCategoryIntput)="getSelectedCategory($event)"></app-select-category>
+    </form>
+
+    <div class="row">
+        <div class="col-sm-12" id="idAddImagesContent">
+            <div style="padding: 10px;text-align: center;" *ngFor="let i of arrImages;let j=index;" class="col-sm-4"><img (load)="addPreviousPictures(j)" src="data:image/jpeg;base64,{{i}}" class="importedImages" style="width:140px;height:140px;"></div>
+        </div>
+        
+        <div class="col-sm-12" id="idAddImagesDeleteButton">
+            <button id="removeImage" class="btn" (click)="removeImage()"><b>Remove Images</b></button>
+            <button id="addImage" class="btn" (click)="addImage(12)"><b>Add Images</b></button>
+            <input type="file" multiple id="imageID" style="display: none;" (change)="selectedImages()" accept="image/*">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" style="text-align: center;">
+            <button type="button" class="btn normalButton" (click)="addProduct()" >Update Product</button>
+        </div>
+    </div>
+</div>

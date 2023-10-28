@@ -1,0 +1,36 @@
+<app-login></app-login>
+
+<nav class="navbar navbar-inverse" style="border-radius: 0px !important;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="">ESHOP</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="">Home</a></li>
+        <li [ngStyle]="{'display': flagLogin + '' === 'true' ? 'inline' : 'none'}" id="profile"><a href="profile/{{username}}">Profile</a></li>
+        <li id="retrieve-all"><a href="retrieve-all">View Products</a></li>
+        <li id="create_product" [ngStyle]="{'display': flagLogin + '' === 'true' ? 'inline' : 'none'}"><a href="create_product">Create Product</a></li>
+        <li [ngStyle]="{'display': flagLogin + '' === 'true' ? 'inline' : 'none'}" id="support"><a href="support">Support</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngIf="username + '' !== '' && username + '' !== 'null'">
+      	  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{username}}<span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	          <li><a (click)="logoutUser()">Log out</a></li>
+	          <!-- OVDE MOZEMO DA PROSIRIMO AKO TREBA POSEBNO DA ULOGOVANI KORISNIK VIDI SVOJE INFORMACIJE -->
+	        </ul>
+	      </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right" *ngIf="username + '' === '' || username + '' === 'null'">
+        <li><a data-toggle="modal" data-target="#myModalLogin">Login</a></li>
+        <li><a href="sign-up">Sign up</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

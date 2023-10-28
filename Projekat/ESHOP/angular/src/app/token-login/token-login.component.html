@@ -1,0 +1,33 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" style="padding-left: 0px;">
+            <h2 class="modal-title">Token</h2>
+        </div>
+        
+        <div class="col-sm-1">
+            &nbsp;
+        </div>
+        
+        <div class="col-sm-7" id="messageTokenLogin">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <form id="tokenLoginForm">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Token</label>
+                    <input type="number" id="token" required min="{{minValue}}" max="{{maxValue}}" class="form-control" value="{{minValue}}">
+                </div>
+            </div>
+        </form>
+
+        <div class="col-sm-12" style="text-align: center;">
+            <div class="form-group">
+                <button class="btn normalButton" (click)="tokenLogin()">Login</button>
+            </div>
+        </div>
+    </div>
+</div>

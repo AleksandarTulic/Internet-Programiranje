@@ -1,0 +1,82 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="col-sm-12" style="text-align: center;">
+                <img src="data:image/jpeg;base64,{{image}}" style="max-width: 200px;max-height: 200px;border-radius: 12px;border: 2px solid #222222;">
+            </div>
+            
+            <div class="col-sm-12" style="text-align: center;">
+                <h3>{{username}}</h3>
+            </div>
+        </div>
+
+        <div class="col-sm-7">
+            &nbsp;
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item active">
+            <a id="defaultTab" class="nav-link" data-toggle="tab" href="#info">Info</a>
+        </li>
+        <li class="nav-item" *ngIf="flagUpdate + '' === 'true'">
+            <a class="nav-link" data-toggle="tab" href="#updateInfo">Update Info</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#activeProducts">Active Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#finishedProducts">Finished Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#productsBought">Products Bought</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="info" class="container tab-pane active"><br>
+            <div class="col-sm-6" style="margin-top: 15px;">
+                <label class="control-label">First Name</label>
+                <input type="text" value="{{firstName}}" readonly class="form-control">
+            </div>
+
+            <div class="col-sm-6" style="margin-top: 15px;">
+                <label class="control-label">Last Name</label>
+                <input type="text" value="{{lastName}}" readonly class="form-control">
+            </div>
+
+            <div class="col-sm-12" style="margin-top: 15px;">
+                <label class="control-label">Email</label>
+                <input type="email" value="{{email}}" readonly class="form-control">
+            </div>
+
+            <div class="col-sm-12" style="margin-top: 15px;">
+                <label class="control-label">Phone</label>
+                <input type="text" value="{{phone}}" readonly class="form-control">
+            </div>
+
+            <div class="col-sm-12" style="margin-top: 15px;">
+                <label class="control-label">City</label>
+                <input type="text" value="{{city}}" readonly class="form-control">
+            </div>
+        </div>
+
+        <div id="updateInfo" class="container tab-pane" *ngIf="flagUpdate + '' === 'true'"><br>
+            <app-update-profile (emitUpdateProfile)="profileChanged()"></app-update-profile>
+        </div>
+
+        <div id="activeProducts" class="container tab-pane"><br>
+            <app-products-pagination [idConsumer]="idConsumer" [whichOperation]="tabId1"></app-products-pagination>
+        </div>
+
+        <div id="finishedProducts" class="container tab-pane"><br>
+            <app-products-pagination [idConsumer]="idConsumer" [whichOperation]="tabId2"></app-products-pagination>
+        </div>
+
+        <div id="productsBought" class="container tab-pane"><br>
+            <app-products-pagination [idConsumer]="idConsumer" [whichOperation]="tabId3"></app-products-pagination>
+        </div>
+    </div>
+</div>

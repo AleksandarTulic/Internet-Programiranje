@@ -1,0 +1,39 @@
+.nav-link{
+    color: #222222;
+}
+
+.nav-link:hover{
+    color: white;
+    background-color: #222222;
+}
+
+.nav-tabs > .active > a, li > .active{
+    background-color: #222222 !important;
+    color: white !important;
+}
+
+.card-img-top{
+    border-radius: 12px;
+    border: 2px solid #222222;
+}
+
+@media only screen and (max-width: 250px) {
+    .btn-danger, .btn-info, .btn-success, .btn-warning {
+      min-width: 80px !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+  #addCommentParent{
+    margin-top: 10px !important;
+  }
+}
+
+.normalButton{
+  padding: 20px;
+}
+
+.normalButton:hover{
+  background-color: #222222;
+  color: white;
+}

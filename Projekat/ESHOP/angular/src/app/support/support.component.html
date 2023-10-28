@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <h2>Support</h2>
+        </div>
+
+        <div class="col-sm-1">
+
+        </div>
+
+        <div class="col-sm-7" id="supportMessageResult">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <form id="supportMessageForm">
+            <div class="col-sm-12 form-group" style="margin-top: 15px;">
+                <label class="control-label">Title</label>
+                <input required type="text" class="form-control" id="supportMessageTitle" maxlength="100" pattern="{{titleRegex}}">
+            </div>
+
+            <div class="col-sm-12 form-group">
+                <label class="control-label">Message</label>
+                <textarea rows="10" class="form-control" id="supportMessageTextArea" maxlength="1000"></textarea>
+            </div>
+        </form>
+
+        <div class="col-sm-12" style="text-align: center;margin-top: 15px;">
+            <button class="btn normalButton" (click)="sendMessage()">Send Message</button>
+        </div>
+    </div>
+</div>

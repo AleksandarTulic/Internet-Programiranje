@@ -1,0 +1,14 @@
+.normalButton:hover{
+	background-color: #222 !important;
+	color: white !important;
+}
+
+.normalButton{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-width: 100px;
+}
+
+td, th, tr{
+    vertical-align: middle !important;
+}

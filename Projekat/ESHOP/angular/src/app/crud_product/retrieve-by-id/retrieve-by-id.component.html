@@ -1,0 +1,225 @@
+<app-header></app-header>
+<app-buy-product [idProduct]="idProduct" [idConsumer]="idConsumer" (EmitFlagBought)="productBought($event)"></app-buy-product>
+
+<div class="container">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item active">
+            <a id="defaultTab" class="nav-link" data-toggle="tab" href="#viewProduct">View Product</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#viewComments">Comments</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="viewProduct" class="container tab-pane active"><br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        &nbsp;
+                    </div>
+                    
+                    <div class="col-sm-1">
+                        &nbsp;
+                    </div>
+                    
+                    <div class="col-sm-7" id="message">
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-sm-9">
+                        <div class="col-sm-6" style="margin-top: 2px;">
+                            <div class="form-group">
+                                <label class="control-label">Product Title</label>
+                                <div>
+                                    <input type="text" readonly id="productTitle" required class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 19px;">
+                                <label class="control-label">Product Type</label>
+                                <div>
+                                    <input type="text" id="productType" class="form-control" readonly value="NEW">
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 19px;">
+                                <label class="control-label">Price</label>
+                                <div>
+                                    <input type="number" id="productPrice" required class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label class="control-label">Product Description</label>
+                            <div>
+                                <textarea style="resize: none;" class="form-control" readonly rows="9" id="description"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">Category</label>
+                                <div>
+                                    <input type="text" id="categoryTitle" required class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" *ngFor="let item of arrFields">
+                            <div class="form-group">
+                                <label class="control-label">{{item.categoryFieldName}}</label>
+                                <div>
+                                    <input type="text" id="categoryTitle" required class="form-control" readonly value="{{item.fieldValue}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12" id="idAddImagesContent">
+                            <div style="padding: 10px;text-align: center;" *ngFor="let i of arrImages;let j=index;" class="col-sm-4"><img (click)="showLargerImage(i)" src="data:image/jpeg;base64,{{i}}" class="importedImages" style="width:140px;height:140px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3" style="text-align: center;">
+                        <label class="control-label">Owner</label>
+                        <div class="col-sm-12 card" style="width: 100%;">
+                            <img class="card-img-top" *ngIf="ownerAvatar + '' !== 'null'" src="data:image/jpeg;base64,{{ownerAvatar}}" alt="Card image" style="max-width: 200px;">
+                            
+                            <div class="card-body" style="margin-top: 20px;">
+                                <div class="col-sm-12" style="text-align: left !important;">
+                                    <label class="control-label">Username</label>
+                                    <input type="text" readonly value="{{ownerUsername}}" class="form-control">
+                                </div>
+
+                                <div class="col-sm-12" style="text-align: left !important;margin-top: 10px;">
+                                    <label class="control-label">Phone Number</label>
+                                    <input type="text" readonly value="{{ownerPhoneNumber}}" class="form-control">
+                                </div>
+
+                                <div class="col-sm-12" style="text-align: left !important;margin-top: 10px;">
+                                    <label class="control-label">Email</label>
+                                    <input type="text" readonly value="{{ownerEmail}}" class="form-control">
+                                </div>
+
+                                <div class="col-sm-12" style="margin-top: 20px;">
+                                    <a href="profile/{{ownerUsername}}" class="btn btn-info" style="min-width: 140px;margin-top: 5px;">See Profile</a>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <button data-toggle="modal" data-target="#myModalBuyProduct" *ngIf="flagBought + '' === 'false' && flagBuy + '' === 'true'" class="btn btn-success" style="min-width: 140px;margin-top: 5px;">Buy</button>
+                                </div>
+                                
+                                <div class="col-sm-12">
+                                    <a href="update_product/{{idProduct}}" *ngIf="flagUpdate + '' === 'true' && flagBought + '' === 'false'" class="btn btn-warning" style="min-width: 140px;margin-top: 5px;">Update</a>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <button class="btn btn-danger" (click)="deleteProduct()" *ngIf="flagDelete + '' === 'true'" style="min-width: 140px;margin-top: 5px;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div id="viewComments" class="container tab-pane"><br>
+                <div class="row">
+                    <div class="col-sm-12" id="messageComment">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <table class="table table-striped" id="myTable1" style="table-layout: fixed;min-width: 350px;">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Message</th>
+                                <th style="text-align: right;">View More</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="commentContent">
+                            <tr *ngFor="let i of arrComments;">
+                                <td style="min-width: 60px;"><a href="profile/{{i.consumerEntity.userEntity.username}}">{{i.consumerEntity.userEntity.username}}</a></td>
+                                <td style="min-width: 60px;">{{i.datetime.split("_")[0]}}</td>
+                                <td style="min-width: 60px;">{{i.datetime.split("_")[1]}}</td>
+                                <td style="min-width: 60px;max-width: 300px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{i.value}}</td>
+                                <td style="text-align: right;"><button class="btn btn-info" (click)="showComment(i.value)">View More</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12" style="text-align: center;" id="myPagination">
+                        <nav aria-label="...">
+                        <ul class="pagination">
+                            <li class="page-item disabled" id="previous">
+                            <a class="page-link normalButton" href="#" style="color: black;min-width: 0 !important;padding-top: 7px;padding-bottom: 7px;margin-top: -1px;" (click)="getNext($event.target, -1)">Previous</a>
+                            </li>
+                            
+                            <li class="page-item active"><a class="page-link" style="background-color: #222;border: 1px solid #222;" href="#" id="leftIndex">1</a></li>
+                            
+                            <li class="page-item" id="next">
+                            <a class="page-link normalButton" href="#" style="color: black;min-width: 0 !important;padding-top: 7px;padding-bottom: 7px;margin-top: -1px;" (click)="getNext($event.target, 1)">Next</a>
+                            </li>
+                        </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="flagBought + '' === 'false' && flagLogin + '' === 'true'">
+                    <div class="col-sm-10">
+                        <textarea id="addComment" class="form-control" rows="10" maxlength="400"></textarea>
+                    </div>
+                    
+                    <div class="col-sm-2" style="text-align: center; margin-top: 151px;" id="addCommentParent">
+                        <button (click)="addComment()" class="btn normalButton">Add Comment</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Picture</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body" id="showLargerImage">
+            <img src="data:image/jpeg;base64,{{showLargerPicture}}" style="max-width:100%;max-height:600px;">
+        </div>
+        
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModalComment">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Comment</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <textarea id="showComment" class="form-control" readonly rows="10" style="resize: none;"></textarea>
+        </div>
+        
+        </div>
+    </div>
+</div>
+
+<button id="forShowingModal" style="display:none;" data-toggle="modal" data-target="#myModal">SHOW IMAGE IN LARGER FORM</button>
+<button id="forShowingModalcomment" style="display:none;" data-toggle="modal" data-target="#myModalComment">SHOW COMMENT IN LARGER FORM</button>

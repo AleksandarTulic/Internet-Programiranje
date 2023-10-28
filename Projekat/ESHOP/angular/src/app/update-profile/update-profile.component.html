@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12" id="updateProfileMessage">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+        <form id="updateProfileForm">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">First Name</label>
+                    <input type="text" id="signUpFirstName" class="form-control" required pattern="{{firstNameRegex}}">
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Last Name</label>
+                    <input type="text" id="signUpLastName" class="form-control" required pattern="{{lastNameRegex}}">
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Password</label>
+                    <input type="password" id="signUpPassword" class="form-control" required pattern="{{passwordRegex}}">
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Email</label>
+                    <input type="email" id="signUpEmail" class="form-control" required pattern="{{emailRegex}}">
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Phone</label>
+                    <input type="text" id="signUpPhone" class="form-control" required pattern="{{phoneRegex}}">
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">City</label>
+                    <input type="text" id="signUpCity" class="form-control" required pattern="{{cityRegex}}">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" id="idAddImagesContent">
+        </div>
+        
+        <div class="col-sm-12" id="idAddImagesDeleteButton">
+            <button id="removeImage" class="btn" (click)="removeImage()"><b>Remove Image</b></button>
+            <button id="addImage" class="btn" (click)="addImage()"><b>Add Image</b></button>
+            <input type="file" id="imageID" style="display: none;" (change)="selectedImages()" accept="image/*">
+        </div>
+    </div>
+
+    <div class="row" style="text-align: center;">
+        <button class="btn normalButton" (click)="update()">
+            Update
+        </button>
+    </div>
+</div>

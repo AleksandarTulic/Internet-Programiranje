@@ -1,0 +1,33 @@
+.normalButton:hover{
+	background-color: #222 !important;
+	color: white !important;
+}
+
+.normalButton{
+    padding: 10px;
+    min-width: 100px;
+}
+
+#addImage, #removeImage{
+    padding: 50px;
+    border: 2px dashed grey;
+    text-transform: uppercase;
+    color: grey;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#addImage:hover, #removeImage:hover{
+    border: none;
+    background-color: #222;
+    color: white;
+    padding: 52px;
+}
+
+img{
+    width: 140px;
+    height: 140px;
+    max-width: 100px;
+    max-height: 100px;
+}

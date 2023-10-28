@@ -1,0 +1,128 @@
+<app-header></app-header>
+
+<div class="container">
+	<h2>Products</h2>
+
+	<div class="row">
+		<div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-3">Search Options</div>
+                        <div class="col-sm-8"></div>
+                        <div class="col-sm-1" style="text-align: right;"><b data-toggle="collapse" data-target="#demo" style="cursor: grab;">&plus;</b></div>
+                    </div>
+                </div>
+
+                <div class="panel-body collapse" id="demo">
+                    <div class="row">
+                        <form>
+                            <div class="col-sm-4">
+                                <h3 style="margin-top: 0px;margin-bottom: 30px;">Product Info</h3>
+
+                                <div class="form-group">
+                                    <label>Product Title</label>
+                                    <input pattern="{{productTitleRegex}}" maxlength="100" class="form-control" type="text" id="productTitle">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Category Title</label>
+                                    <select class="form-control" id="categoryTitle">
+                                        <option *ngFor="let item of arrCategory;let j=index" value="{{item.title}}">{{item.title}}</option>
+                                        <option selected="selected" value="ANY">ANY</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Product Type</label>
+                                    <select class="form-control" id="productType">
+                                        <option value="{{productType1}}">{{productType1}}</option>
+                                        <option value="{{productType2}}">{{productType2}}</option>
+                                        <option selected="selected" value="{{productType3}}">{{productType3}}</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <input pattern="{{cityRegex}}" class="form-control" type="text" id="city">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <h3 style="margin-top: 0px;margin-bottom: 30px;">Product Cost</h3>
+
+                                <div class="form-group">
+                                    <label>Min Value</label>
+                                    <input class="form-control" type="number" min="0" id="lowerCost" step="0.01">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Max Value</label>
+                                    <input class="form-control" type="number" min="0" id="upperCost" step="0.01">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <h3 style="margin-top: 0px;margin-bottom: 30px;">Product Description</h3>
+
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea style="resize: none;" class="form-control" rows="12" id="description"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align:center;">
+                            <button class="btn normalButton" (click)="loadElementsButton()">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+		
+		<div class="col-sm-12">
+			<table class="table table-striped" id="myTable1">
+				<thead>
+					<tr>
+						<th>Image</th>
+						<th>Title</th>
+						<th>Category</th>
+						<th>Cost</th>
+						<th>View More</th>
+					</tr>
+				</thead>
+				
+				<tbody id="productsContent">
+                        <tr *ngFor="let item of arrProductResponse;let j=index">
+                            <td><img *ngIf="item.image + '' !== 'null'" src="data:image/jpeg;base64,{{item.image}}" style="width:150px;height:90px;"></td>
+                            <td>{{item.title}}</td>
+                            <td>{{item.category}}</td>
+                            <td>{{item.cost}}</td>
+                            <td><button class="btn btn-info" (click)="viewMore(item.id)">More?</button></td>
+                        </tr>
+				</tbody>
+			</table>
+			
+			<div class="col-sm-12" style="text-align: center;" id="myPagination">
+  				<nav aria-label="...">
+				  <ul class="pagination">
+				    <li class="page-item disabled" id="previous">
+				      <a class="page-link normalButton" href="#" style="color: black;min-width: 0 !important;padding-top: 7px;padding-bottom: 7px;margin-top: -1px;" (click)="getNext($event.target, -1)">Previous</a>
+				    </li>
+				    
+				    <li class="page-item active"><a class="page-link" style="background-color: #222;border: 1px solid #222;" href="#" id="leftIndex">1</a></li>
+				    
+				    <li class="page-item" id="next">
+				      <a class="page-link normalButton" href="#" style="color: black;min-width: 0 !important;padding-top: 7px;padding-bottom: 7px;margin-top: -1px;" (click)="getNext($event.target, 1)">Next</a>
+				    </li>
+				  </ul>
+				</nav>
+  			</div>
+		</div>
+	</div>
+</div>

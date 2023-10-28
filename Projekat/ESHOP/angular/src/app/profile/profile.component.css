@@ -1,0 +1,13 @@
+.nav-link{
+    color: #222222;
+}
+
+.nav-link:hover{
+    color: white;
+    background-color: #222222;
+}
+
+.nav-tabs > .active > a, li > .active{
+    background-color: #222222 !important;
+    color: white !important;
+}
